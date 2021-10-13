@@ -32,5 +32,6 @@ function getPokemons(quantity){
                 });
         });
     });
-
 }
+
+getPokemons(9);
