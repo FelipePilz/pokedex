@@ -24,21 +24,35 @@ function getPokemons(quantity) {
                         .then((response) => response.json())
                         .then((pokemonSingle) => {
                             pokemons.push({
+								id: pokemonSingle.id,
                                 name: val.name,
                                 img: pokemonSingle.sprites.front_default,
+								type: (pokemonSingle.types[0].type.name)
                             });
                             if (pokemons.length == quantity) {
                                 pokemons.map((val) => {
-                                    pokemonsBoxes.innerHTML +=
-                                        `
-								<div class="pokemon-box col m-3 rounded shadow-sm" style="--bs-bg-opacity: 0.1; text-transform:capitalize;">
-                            		<h3 class="pt-4">` +
+                                    pokemonsBoxes.innerHTML +=`
+								
+								
+								
+								
+								<div class="pokemon-box shadow-sm rounded col m-2 text-center" style="text-transform: capitalize;">
+                            		<h3 class="">` +
                                         val.name +
                                         `</h3>
-                            		<img style="width: 140px" src="` +
+                            		<img style="min-height:150px" src="` +
                                         val.img +
                                         `">
-                        		</div>
+                        			<div class="btn-group flex-column" style="display:flex; width:140px; margin:auto;">
+                        				<button type="button" class="btn btn-primary dropdown-toggle m-2" data-bs-toggle="dropdown" aria-expanded="false">See info</button>
+                        				<ul class="dropdown-menu">
+                            				<li>
+                                				<p class="dropdown-item my-0 disabled text-black">Pokemon #` + val.id + `</p>
+                                				<p class="dropdown-item my-0 disabled text-black">Primary type: ` + val.type + `</p>
+                            				</li>
+                        				</ul>
+                    				</div>
+								</div>
 							`;
                                 });
                             }
@@ -47,12 +61,12 @@ function getPokemons(quantity) {
             });
     } else {
         pokemonsBoxes.innerHTML = `
-			<div class="pokemon-box col m-3 rounded" style="--bs-bg-opacity: 0.1; text-transform:capitalize;">
-                <h3 class="pt-4">No pokemons were found</h3>
-                <img style="width: 100px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe6%2F80%2F2d%2Fe6802d9c0538e25efed9d1cdf3414af9.gif&f=1&nofb=1">
-            </div>
+			<div class="pokemon-box">
+                <h3 class="">No pokemons were found</h3>
+                <img style="max-height:150px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fe6%2F80%2F2d%2Fe6802d9c0538e25efed9d1cdf3414af9.gif&f=1&nofb=1">
+			</div>
 		`;
     }
 }
 
-getPokemons(9);
+getPokemons(1);
